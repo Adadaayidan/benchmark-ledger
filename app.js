@@ -989,22 +989,23 @@ function openBoundaryModel(id) {
   $("#drawer-overlay").hidden = false;
   drawer.classList.add("is-open");
   drawer.setAttribute("aria-hidden", "false");
-  const sourceById = new Map(state.resultsDataset.sources.map((source) => [source.id, source]));
+  const sourceById = new Map((state.resultsDataset.sources || []).map((source) => [source.id, source]));
   const overall = scoreForCapability(model, "overall");
+  const modelScoreCount = (model.capability_scores || []).length;
   const scoreItems = state.resultsDataset.capabilities.map((capability) => {
     const score = scoreForCapability(model, capability.name);
     return `<div class="boundary-score-item"><span>${escapeHtml(capability.name)}</span><strong>${score ? roundNumber(score.boundary_score) : "—"}</strong><small>${score ? `覆盖 ${Math.round(score.coverage * 100)}% · 可信度 ${Math.round(score.confidence)}%` : "暂无直接评测"}</small></div>`;
   }).join("");
-  const observations = model.observations.slice().sort((a, b) => a.capability.localeCompare(b.capability, "zh-CN") || a.metric_label.localeCompare(b.metric_label, "zh-CN"));
+  const observations = (model.observations || []).slice().sort((a, b) => String(a.capability || "").localeCompare(String(b.capability || ""), "zh-CN") || String(a.metric_label || "").localeCompare(String(b.metric_label || ""), "zh-CN"));
   $("#drawer-content").innerHTML = `
     <div class="detail-score"><span class="boundary-value">${overall ? roundNumber(overall.boundary_score) : "—"}<small>/100</small></span><strong>${overall ? "综合能力边界" : "单维结果"}</strong><span>${overall ? `维度覆盖 ${overall.observed_dimensions}/${overall.total_dimensions}` : "暂无综合分"}</span></div>
     <div class="detail-grid">
       ${detailsField("机构", model.organization)}${detailsField("国家 / 地区", model.country)}
       ${detailsField("公开发布日期", formatReleaseDate(model.release_date))}${detailsField("日期可信度", model.release_date_confidence)}
       ${detailsField("国家口径", model.country_source)}${detailsField("日期来源", model.release_date_source)}
-      ${detailsField("结果观测", String(model.observations.length))}${detailsField("覆盖维度", String(model.capability_scores.length))}
+      ${detailsField("结果观测", String(observations.length))}${detailsField("覆盖维度", String(modelScoreCount))}
     </div>
-    <section class="drawer-section"><h3>六维能力雷达 · ${model.capability_scores.length}/6</h3><div class="model-radar-chart">${modelRadarSvg(model)}</div><p class="model-radar-note">综合分为已有能力维度的算术平均；缺失维度不按 0 分补齐，维度覆盖度单独显示。</p><div class="boundary-score-grid">${scoreItems}</div></section>
+    <section class="drawer-section"><h3>六维能力雷达 · ${modelScoreCount}/6</h3><div class="model-radar-chart">${modelRadarSvg(model)}</div><p class="model-radar-note">综合分为已有能力维度的算术平均；缺失维度不按 0 分补齐，维度覆盖度单独显示。</p><div class="boundary-score-grid">${scoreItems}</div></section>
     <section class="drawer-section"><h3>原始评测观测 · ${observations.length}</h3><div class="observation-table-wrap"><table class="observation-table"><thead><tr><th>指标</th><th>能力</th><th>原始分</th><th>标准化</th><th>来源定位</th></tr></thead><tbody>${observations.map((observation) => {
       const source = sourceById.get(observation.source_id);
       return `<tr><td>${escapeHtml(observation.metric_label)}</td><td>${escapeHtml(observation.capability)}</td><td>${escapeHtml(observation.score_display)}</td><td>${roundNumber(observation.normalized_score)}</td><td>${escapeHtml(source?.label || observation.source_id)}<small>${escapeHtml(observation.source_sheet)} · 第 ${observation.source_row} 行</small></td></tr>`;
