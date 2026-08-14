@@ -9,15 +9,13 @@
 </head>
 <body>
   <header class="app-header">
-    <a class="brand" href="#catalog" aria-label="基准信源库首页">
+    <a class="brand" href="#standards" aria-label="基准信源库首页">
       <span class="brand-mark" aria-hidden="true">B/</span>
       <span class="brand-copy"><strong>基准信源库</strong><small>Benchmark Ledger</small></span>
     </a>
     <nav class="top-tabs" aria-label="主导航">
-      <button class="tab-button" data-view="standards">评测标准库</button>
-      <button class="tab-button is-active" data-view="catalog">评测目录</button>
-      <button class="tab-button" data-view="boundary">能力边界</button>
-      <button class="tab-button" data-view="map">能力图谱</button>
+      <button class="tab-button is-active" data-view="standards">评测标准库</button>
+      <button class="tab-button" data-view="boundary">国家能力边界</button>
       <button class="tab-button" data-view="method">数据方法</button>
     </nav>
     <div class="header-actions">
@@ -133,10 +131,10 @@
       <div class="page-heading compact">
         <div>
           <p class="eyebrow">CAPABILITY FRONTIER INDEX</p>
-          <h1>模型能力边界</h1>
-          <p class="page-summary">按模型公开发布日期观察能力前沿，并在同一时间窗口内比较不同模型。</p>
+          <h1>国家 × 时间能力边界</h1>
+          <p class="page-summary">按模型公开发布日期切片，比较中国与美国模型在综合能力和六个维度上的历史前沿。</p>
         </div>
-        <div class="boundary-method-note"><span>指数口径</span><strong>0–100</strong><small id="results-updated">原始成绩标准化 · 子能力等权</small></div>
+        <div class="boundary-method-note"><span>指数口径</span><strong>可比 0–100</strong><small id="results-updated">至少 3/6 维平均 · 覆盖度单列</small></div>
       </div>
 
       <section class="boundary-metrics" aria-label="模型结果概览">
@@ -144,6 +142,11 @@
         <article><span>原始观测</span><strong id="boundary-observation-count">—</strong><small>逐项保留来源定位</small></article>
         <article><span>发布日期覆盖</span><strong id="boundary-date-rate">—</strong><small id="boundary-date-count">—</small></article>
         <article><span>结果来源</span><strong id="boundary-source-count">—</strong><small>官方 API / Excel / JSON</small></article>
+      </section>
+
+      <section class="country-score-strip" aria-label="中美能力边界摘要">
+        <div class="section-heading"><div><h2>当前时间切片：中美能力边界</h2><span>截至所选时期取各国已发布模型的历史前沿；综合分取已有能力维度平均值</span></div><span id="country-score-period"></span></div>
+        <div class="country-score-grid" id="country-score-strip"></div>
       </section>
 
       <section class="boundary-source-strip" aria-labelledby="boundary-source-title">
@@ -195,7 +198,7 @@
         <div class="section-heading"><div><h2>同期模型对比</h2><span id="boundary-period-summary"></span></div><span id="boundary-result-count"></span></div>
         <div class="boundary-table-wrap">
           <table class="boundary-table">
-            <thead><tr><th>排名</th><th>模型 / 系统</th><th>发布日期</th><th>边界值</th><th>覆盖度</th><th>可信度</th><th>六维画像</th><th></th></tr></thead>
+            <thead><tr><th>排名</th><th>模型 / 系统</th><th>发布日期</th><th>综合边界值</th><th>维度覆盖</th><th>可信度</th><th>六维画像</th><th></th></tr></thead>
             <tbody id="boundary-rows"></tbody>
           </table>
         </div>
@@ -230,8 +233,8 @@
         <div><h2>当前数据边界</h2><p>benchmark 目录与模型结果分开导入。模型结果来自官方 API、官网下载文件及留存快照，一级能力统一映射到六维体系；缺失能力、日期和无效区间不会通过推测补齐。</p><div class="boundary-stat"><strong id="result-record-count">0</strong><span>模型分数记录</span></div></div>
       </section>
       <section class="boundary-methodology">
-        <div><h2>能力边界值</h2><p>准确率与百分制成绩统一到 0–100；竞技场评级以 1000 为中点做 logistic 转换。同一子能力内按来源权重汇总，再对子能力等权，避免题目多的来源支配结果。</p></div>
-        <div><h2>覆盖度与可信度</h2><p>覆盖度衡量目标子能力中实际有结果的比例；可信度综合覆盖度、来源可追溯性与观测数量。缺失能力保持为空，不按 0 分处理。</p></div>
+        <div><h2>能力边界值</h2><p>先把各类公开结果标准化到 0–100，再按已有一级能力维度取算术平均。综合比较至少需要 3/6 个维度；同一子能力内按来源权重汇总，再对子能力等权。</p></div>
+        <div><h2>覆盖度与可信度</h2><p>覆盖度表示模型已有结果的能力维度占六维体系的比例；可信度综合来源可追溯性与观测数量。缺失能力保持为空，不按 0 分处理。</p></div>
         <div><h2>时间口径</h2><p>时间轴使用模型公开发布日期；榜单快照日期仅用于数据溯源。缺少可靠发布日期的模型保留在原始结果中，但不进入跨期趋势。</p></div>
       </section>
     </section>

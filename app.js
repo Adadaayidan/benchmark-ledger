@@ -39,6 +39,7 @@ const capabilityShort = {
 };
 
 const radarColors = ["#155e4b", "#a55b09", "#316f9f", "#a23a32"];
+const MIN_OVERALL_DIMENSIONS = 3;
 const radarCompactLabels = {
   "知识与语言": "知识语言", "推理与数学": "推理数学", "编程与软件工程": "编程工程",
   "多模态理解与生成": "多模态", "智能体与具身执行": "智能体", "安全、对齐与可靠性": "安全可靠",
@@ -63,7 +64,9 @@ function standardIsRecent(item) {
 }
 
 function standardIsRecurring(item) {
-  return Boolean(item.update_frequency || item.next_updated);
+  const frequency = String(item.update_frequency || "").trim();
+  const unknownFrequency = ["不定", "不定期", "未知", "未记录"].includes(frequency);
+  return Boolean(item.next_updated || (frequency && !unknownFrequency));
 }
 
 function standardMatches(item) {
@@ -132,17 +135,20 @@ function renderStandards() {
 function renderStandardsSummary() {
   const records = state.standardsDataset.records;
   const counts = records.reduce((map, item) => map.set(standardOriginLabel(item.origin_country), (map.get(standardOriginLabel(item.origin_country)) || 0) + 1), new Map());
-  const countrySummary = ["中国", "美国", "其他/国际", "待核验"].map((label) => `${label} ${counts.get(label) || 0}`).join(" · ");
+  const countrySummary = ["中国", "美国", "中美合作", "其他/国际", "待核验"].map((label) => `${label} ${counts.get(label) || 0}`).join(" · ");
   $("#standards-total").textContent = records.length;
   $("#standards-country-mix").textContent = countrySummary;
   $("#standards-refresh-rate").textContent = `${Math.round(records.filter((item) => standardIsRecurring(item)).length / records.length * 100)}%`;
   $("#standards-supplemental").textContent = records.filter((item) => item.record_status === "补录项").length;
   $("#standards-source-count").textContent = `${state.standardsDataset.meta.source_rows} 条 Excel · ${state.standardsDataset.meta.supplemental_rows} 条补录`;
-  $("#standards-source-note").textContent = `读取自 ${state.standardsDataset.meta.source_file}`;
+  const externalRows = state.standardsDataset.meta.external_rows || 0;
+  $("#standards-source-note").textContent = `读取自 ${state.standardsDataset.meta.source_file}${externalRows ? ` · 另含 ${externalRows} 条 Epoch AI 快照` : ""}`;
   const covered = state.standardsDataset.meta.important_audit.covered || [];
   const added = new Set(state.standardsDataset.meta.important_audit.added || []);
-  $("#standards-audit-summary").textContent = `${covered.length} 个核心标准已在目录中 · ${added.size} 个本次补录`;
-  $("#standards-audit-chips").innerHTML = [...covered.map((name) => `<span class="audit-chip covered"><i></i>${escapeHtml(name)}<small>已纳入</small></span>`), ...[...added].map((name) => `<span class="audit-chip added"><i></i>${escapeHtml(name)}<small>补录</small></span>`)].join("");
+  const externalAdded = state.standardsDataset.meta.important_audit.external_added || [];
+  $("#standards-audit-summary").textContent = `${covered.length} 个核心标准已在目录中 · ${added.size + externalAdded.length} 个补录`;
+  const externalChip = externalAdded.length ? `<span class="audit-chip added"><i></i>Epoch AI Benchmark Hub<small>${externalAdded.length} 条快照补录</small></span>` : "";
+  $("#standards-audit-chips").innerHTML = [...covered.map((name) => `<span class="audit-chip covered"><i></i>${escapeHtml(name)}<small>已纳入</small></span>`), ...[...added].map((name) => `<span class="audit-chip added"><i></i>${escapeHtml(name)}<small>补录</small></span>`), externalChip].join("");
 }
 
 function openStandardDetails(id) {
@@ -507,11 +513,19 @@ function periodLabel(value) {
 
 function scoreForCapability(model, capability) {
   if (capability === "overall") {
-    if (model.overall_score === null) return null;
-    const confidence = model.capability_scores.length
-      ? model.capability_scores.reduce((sum, score) => sum + score.confidence, 0) / model.capability_scores.length
-      : 0;
-    return { boundary_score: model.overall_score, coverage: model.overall_coverage, confidence };
+    const scores = (model.capability_scores || []).filter((score) => Number.isFinite(Number(score.boundary_score)));
+    if (scores.length < MIN_OVERALL_DIMENSIONS) return null;
+    const totalDimensions = state.resultsDataset?.capabilities?.length || 6;
+    const confidence = scores.reduce((sum, score) => sum + Number(score.confidence || 0), 0) / scores.length;
+    const boundary_score = scores.reduce((sum, score) => sum + Number(score.boundary_score), 0) / scores.length;
+    return {
+      boundary_score,
+      coverage: scores.length / totalDimensions,
+      confidence,
+      observed_dimensions: scores.length,
+      total_dimensions: totalDimensions,
+      source_coverage: model.overall_coverage,
+    };
   }
   return model.capability_scores.find((score) => score.capability === capability) || null;
 }
@@ -551,8 +565,9 @@ function timelineData() {
   let best = null;
   const output = [];
   periods.forEach((period) => {
-    state.resultsDataset.models.filter((model) => model[periodField] === period && model.overall_score !== null).forEach((model) => {
-      if (!best || model.overall_score > best.score) best = { score: model.overall_score, model_id: model.id, model_name: model.name };
+    state.resultsDataset.models.filter((model) => model[periodField] === period).forEach((model) => {
+      const score = scoreForCapability(model, "overall");
+      if (score && (!best || score.boundary_score > best.score)) best = { score: score.boundary_score, model_id: model.id, model_name: model.name };
     });
     if (best) output.push({ period, capability: "综合能力", ...best });
   });
@@ -625,6 +640,20 @@ function countryFrontierAt(country, period) {
     return best;
   });
   return { country, period, values, modelCount: models.length, dimensionCount: values.filter(Boolean).length };
+}
+
+function countryScoreAt(country, period) {
+  const periods = boundaryPeriods();
+  const selectedIndex = periods.indexOf(period);
+  const field = boundaryPeriodField();
+  const models = state.resultsDataset.models.filter((model) => {
+    const modelIndex = periods.indexOf(model[field]);
+    return model.country === country && modelIndex >= 0 && modelIndex <= selectedIndex;
+  });
+  const scored = models.map((model) => ({ model, score: scoreForCapability(model, state.boundary.capability) })).filter((entry) => entry.score);
+  const best = scored.slice().sort((a, b) => b.score.boundary_score - a.score.boundary_score || b.score.coverage - a.score.coverage)[0];
+  const average = scored.length ? scored.reduce((sum, entry) => sum + entry.score.boundary_score, 0) / scored.length : null;
+  return { models, scored, best, average };
 }
 
 function countryEvolutionSeries(country) {
@@ -733,7 +762,7 @@ function renderBoundaryTable(periodModels) {
       <td class="boundary-rank">${index + 1}</td>
       <td class="boundary-model-cell"><button type="button" class="boundary-model-button" data-boundary-model="${model.id}">${escapeHtml(model.name)}</button><small>${escapeHtml(model.organization || "机构未记录")}${model.country ? ` · ${escapeHtml(model.country)}` : ""}</small></td>
       <td>${formatReleaseDate(model.release_date)}<small class="date-confidence">${escapeHtml(model.release_date_confidence)}</small></td>
-      <td><span class="boundary-value">${score.boundary_score}<small>/100</small></span></td>
+      <td><span class="boundary-value">${roundNumber(score.boundary_score)}<small>/100</small></span></td>
       <td><span class="coverage-meter"><i><b style="width:${score.coverage * 100}%"></b></i><span>${Math.round(score.coverage * 100)}%</span></span></td>
       <td><span class="confidence-label">${Math.round(score.confidence)}%</span></td>
       <td><div class="profile-strip">${capabilityProfile(model)}</div></td>
@@ -745,10 +774,26 @@ function renderBoundaryTable(periodModels) {
   $("#boundary-period-summary").textContent = periodLabel(state.boundary.period);
 }
 
+function renderCountryScoreStrip(periodModels) {
+  const labels = [
+    { key: "中国", label: "中国", tone: "cn" },
+    { key: "美国", label: "美国", tone: "us" },
+  ];
+  const capabilityLabel = state.boundary.capability === "overall" ? "综合能力" : state.boundary.capability;
+  const scoreFor = (country) => countryScoreAt(country, state.boundary.period);
+  const values = labels.map((entry) => ({ ...entry, ...scoreFor(entry.key) }));
+  const cn = values[0].best?.score.boundary_score;
+  const us = values[1].best?.score.boundary_score;
+  const gap = cn !== undefined && us !== undefined ? us - cn : null;
+  $("#country-score-period").textContent = `${periodLabel(state.boundary.period)} · ${capabilityLabel}`;
+  $("#country-score-strip").innerHTML = `${values.map((entry) => `<article class="country-score-card ${entry.tone}"><div><span>${entry.label}</span><small>${entry.scored.length} 个可比模型 / ${entry.models.length} 个模型</small></div><strong>${entry.best ? roundNumber(entry.best.score.boundary_score) : "—"}<small>/100</small></strong><p>${entry.best ? `前沿模型：${escapeHtml(entry.best.model.name)}` : "截至该期暂无至少 3 维结果"}</p><footer>${entry.average === null ? "平均值：—" : `截至该期平均：${roundNumber(entry.average)}`} · 维度覆盖 ${entry.best ? `${entry.best.score.observed_dimensions || 1}/${entry.best.score.total_dimensions || 6}` : "—"}</footer></article>`).join("")}<article class="country-score-card gap"><div><span>美国 − 中国</span><small>最高边界差值</small></div><strong>${gap === null ? "—" : `${gap > 0 ? "+" : ""}${roundNumber(gap)}`}<small>分</small></strong><p>${gap === null ? "需要两国在当前切片都有可用结果" : gap > 0 ? "当前切片美国前沿更高" : gap < 0 ? "当前切片中国前沿更高" : "当前切片两国前沿相同"}</p><footer>差值只比较同一时间与同一能力口径</footer></article>`;
+}
+
 function renderBoundary() {
   const periodModels = boundaryModelsForPeriod();
   renderTimeline();
   renderBoundaryCoverage(boundaryModelsForPeriod(false));
+  renderCountryScoreStrip(boundaryModelsForPeriod(false));
   renderCountryRadar();
   renderBoundaryTable(periodModels);
 }
@@ -945,20 +990,21 @@ function openBoundaryModel(id) {
   drawer.classList.add("is-open");
   drawer.setAttribute("aria-hidden", "false");
   const sourceById = new Map(state.resultsDataset.sources.map((source) => [source.id, source]));
+  const overall = scoreForCapability(model, "overall");
   const scoreItems = state.resultsDataset.capabilities.map((capability) => {
     const score = scoreForCapability(model, capability.name);
-    return `<div class="boundary-score-item"><span>${escapeHtml(capability.name)}</span><strong>${score ? score.boundary_score : "—"}</strong><small>${score ? `覆盖 ${Math.round(score.coverage * 100)}% · 可信度 ${Math.round(score.confidence)}%` : "暂无直接评测"}</small></div>`;
+    return `<div class="boundary-score-item"><span>${escapeHtml(capability.name)}</span><strong>${score ? roundNumber(score.boundary_score) : "—"}</strong><small>${score ? `覆盖 ${Math.round(score.coverage * 100)}% · 可信度 ${Math.round(score.confidence)}%` : "暂无直接评测"}</small></div>`;
   }).join("");
   const observations = model.observations.slice().sort((a, b) => a.capability.localeCompare(b.capability, "zh-CN") || a.metric_label.localeCompare(b.metric_label, "zh-CN"));
   $("#drawer-content").innerHTML = `
-    <div class="detail-score"><span class="boundary-value">${model.overall_score ?? "—"}<small>/100</small></span><strong>${model.overall_score === null ? "单维结果" : "综合能力边界"}</strong><span>总覆盖度 ${Math.round(model.overall_coverage * 100)}%</span></div>
+    <div class="detail-score"><span class="boundary-value">${overall ? roundNumber(overall.boundary_score) : "—"}<small>/100</small></span><strong>${overall ? "综合能力边界" : "单维结果"}</strong><span>${overall ? `维度覆盖 ${overall.observed_dimensions}/${overall.total_dimensions}` : "暂无综合分"}</span></div>
     <div class="detail-grid">
       ${detailsField("机构", model.organization)}${detailsField("国家 / 地区", model.country)}
       ${detailsField("公开发布日期", formatReleaseDate(model.release_date))}${detailsField("日期可信度", model.release_date_confidence)}
       ${detailsField("国家口径", model.country_source)}${detailsField("日期来源", model.release_date_source)}
       ${detailsField("结果观测", String(model.observations.length))}${detailsField("覆盖维度", String(model.capability_scores.length))}
     </div>
-    <section class="drawer-section"><h3>六维能力雷达 · ${model.capability_scores.length}/6</h3><div class="model-radar-chart">${modelRadarSvg(model)}</div><p class="model-radar-note">雷达值为各维度能力边界；虚线或中心缺口表示缺失，不代表 0 分。</p><div class="boundary-score-grid">${scoreItems}</div></section>
+    <section class="drawer-section"><h3>六维能力雷达 · ${model.capability_scores.length}/6</h3><div class="model-radar-chart">${modelRadarSvg(model)}</div><p class="model-radar-note">综合分为已有能力维度的算术平均；缺失维度不按 0 分补齐，维度覆盖度单独显示。</p><div class="boundary-score-grid">${scoreItems}</div></section>
     <section class="drawer-section"><h3>原始评测观测 · ${observations.length}</h3><div class="observation-table-wrap"><table class="observation-table"><thead><tr><th>指标</th><th>能力</th><th>原始分</th><th>标准化</th><th>来源定位</th></tr></thead><tbody>${observations.map((observation) => {
       const source = sourceById.get(observation.source_id);
       return `<tr><td>${escapeHtml(observation.metric_label)}</td><td>${escapeHtml(observation.capability)}</td><td>${escapeHtml(observation.score_display)}</td><td>${roundNumber(observation.normalized_score)}</td><td>${escapeHtml(source?.label || observation.source_id)}<small>${escapeHtml(observation.source_sheet)} · 第 ${observation.source_row} 行</small></td></tr>`;
@@ -971,14 +1017,20 @@ function roundNumber(value) {
 }
 
 function setView(view) {
-  state.currentView = view;
-  $$("[data-view-panel]").forEach((panel) => panel.classList.toggle("is-active", panel.dataset.viewPanel === view));
-  $$("[data-view]").forEach((button) => button.classList.toggle("is-active", button.dataset.view === view));
-  history.replaceState(null, "", `#${view}`);
+  const aliases = { catalog: "standards", map: "boundary" };
+  const nextView = aliases[view] || (["standards", "boundary", "method"].includes(view) ? view : "standards");
+  state.currentView = nextView;
+  $$("[data-view-panel]").forEach((panel) => panel.classList.toggle("is-active", panel.dataset.viewPanel === nextView));
+  $$("[data-view]").forEach((button) => button.classList.toggle("is-active", button.dataset.view === nextView));
+  history.replaceState(null, "", `#${nextView}`);
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function exportCsv() {
+  if (state.currentView === "standards") {
+    exportStandardsCsv();
+    return;
+  }
   if (state.currentView === "boundary") {
     exportBoundaryCsv();
     return;
@@ -1001,6 +1053,19 @@ function exportCsv() {
   URL.revokeObjectURL(url);
 }
 
+function exportStandardsCsv() {
+  const columns = ["name", "source_url", "ai_type", "primary_capability", "secondary_capability", "current_updated", "next_updated", "update_frequency", "evaluation_logic", "data_type", "language", "reference_value", "github_url", "paper_title", "authors", "publisher", "origin_country", "record_status"];
+  const rows = state.standardsFiltered?.length ? state.standardsFiltered : state.standardsDataset?.records || [];
+  const csvCell = (value) => `"${String(value ?? "").replaceAll('"', '""')}"`;
+  const csv = [columns, ...rows.map((item) => columns.map((column) => item[column]))].map((row) => row.map(csvCell).join(",")).join("\r\n");
+  const url = URL.createObjectURL(new Blob(["\ufeff", csv], { type: "text/csv;charset=utf-8" }));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "benchmark-standard-library.csv";
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
 function exportBoundaryCsv() {
   const capabilityNames = state.resultsDataset.capabilities.map((entry) => entry.name);
   const columns = [
@@ -1011,7 +1076,7 @@ function exportBoundaryCsv() {
   const csvCell = (value) => `"${String(value ?? "").replaceAll('"', '""')}"`;
   const values = rows.map((model) => [
     model.name, model.organization, model.country, model.release_date, model.release_date_confidence,
-    model.overall_score, Math.round(model.overall_coverage * 100),
+    scoreForCapability(model, "overall")?.boundary_score ?? "", Math.round((scoreForCapability(model, "overall")?.coverage || 0) * 100),
     ...capabilityNames.map((capability) => scoreForCapability(model, capability)?.boundary_score ?? ""),
     model.observations.length,
   ]);
@@ -1104,7 +1169,9 @@ function bindEvents() {
 
 async function init() {
   bindEvents();
-  const initialView = ["standards", "catalog", "boundary", "map", "method"].includes(location.hash.slice(1)) ? location.hash.slice(1) : "standards";
+  const legacyView = { catalog: "standards", map: "boundary" };
+  const requestedView = location.hash.slice(1);
+  const initialView = legacyView[requestedView] || (["standards", "boundary", "method"].includes(requestedView) ? requestedView : "standards");
   setView(initialView);
   try {
     const embeddedDataset = $("#benchmark-data");
@@ -1115,8 +1182,9 @@ async function init() {
       state.staticOnly = true;
       state.backendAvailable = false;
     } else {
-      const [datasetResponse, resultsResponse, standardsResponse] = await Promise.all([fetch(appUrl("data/benchmarks.json")), fetch(appUrl("data/results.json")), fetch(appUrl("data/benchmark_catalog.json"))]);
-      if (!datasetResponse.ok || !resultsResponse.ok) throw new Error(`数据载入失败：${datasetResponse.status} / ${resultsResponse.status}`);
+      const fetchOptions = { cache: "no-store" };
+      const [datasetResponse, resultsResponse, standardsResponse] = await Promise.all([fetch(appUrl("data/benchmarks.json"), fetchOptions), fetch(appUrl("data/results.json"), fetchOptions), fetch(appUrl("data/benchmark_catalog.json"), fetchOptions)]);
+      if (!datasetResponse.ok || !resultsResponse.ok || !standardsResponse.ok) throw new Error(`数据载入失败：${datasetResponse.status} / ${resultsResponse.status} / ${standardsResponse.status}`);
       [state.dataset, state.resultsDataset, state.standardsDataset] = await Promise.all([datasetResponse.json(), resultsResponse.json(), standardsResponse.json()]);
       state.staticOnly = true;
       state.backendAvailable = false;

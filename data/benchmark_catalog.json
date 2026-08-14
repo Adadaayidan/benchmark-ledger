@@ -2,8 +2,8 @@
   "meta": {
     "source_file": "AI能力里程碑_benchmark_能力映射表.xlsx",
     "source_rows": 110,
-    "supplemental_rows": 6,
-    "generated_at": "2026-08-13T09:30:16.116Z",
+    "supplemental_rows": 71,
+    "generated_at": "2026-08-14T07:43:23.087Z",
     "important_audit": {
       "covered": [
         "MMLU",
@@ -27,8 +27,77 @@
         "ManiSkill",
         "HumanoidBench",
         "SafetyBench"
+      ],
+      "external_added": [
+        "ANLI",
+        "Aider Polyglot",
+        "ALE-Bench",
+        "AlgoTune",
+        "Apex Agents",
+        "ARC-AI2",
+        "BALROG",
+        "BlueprintBench 2",
+        "BoolQ",
+        "BTF3",
+        "CAD-Eval",
+        "Chess Puzzles",
+        "CL-Bench",
+        "CL-Bench Life",
+        "CommonsenseQA 2",
+        "CritPT",
+        "CursorBench",
+        "CyBench",
+        "DeepResearchBench",
+        "DeepSWE",
+        "Enigma Eval",
+        "ExploitBench",
+        "FictionLiveBench",
+        "ForecastBench",
+        "FrontierCode",
+        "FrontierMath",
+        "FrontierMath Tier 4",
+        "FrontierSWE",
+        "GBAEval",
+        "GDP.pdf",
+        "GDPVal",
+        "GeoBench",
+        "GSO",
+        "HellaSwag",
+        "HLE",
+        "LAMBADA",
+        "Lech Mazur Writing",
+        "LiveBench",
+        "METR Time Horizons",
+        "MindCube",
+        "OpenBookQA",
+        "OSWorld",
+        "OSWorld 2",
+        "OTIS Mock AIME 2024-2025",
+        "PIQA",
+        "PostTrainBench",
+        "ProofBench",
+        "RLI",
+        "SciCode",
+        "ScienceQA",
+        "SimpleBench",
+        "SimpleQA Verified",
+        "SpatialViz-Bench",
+        "SuperGLUE",
+        "Surface Evolver Bench",
+        "SWE-bench Verified",
+        "TerminalBench",
+        "The Agent Company",
+        "TriviaQA",
+        "VendingBench 2",
+        "Video-MME",
+        "VPCT",
+        "WebDev Arena",
+        "WeirdML",
+        "WinoGrande"
       ]
-    }
+    },
+    "external_rows": 65,
+    "external_source": "benchmarks.json · Epoch AI Benchmark Hub"
   },
   "records": [
     {
@@ -2814,704 +2883,2267 @@
       "record_status": "补录项",
       "note": "补足中国来源的安全与对齐评测。",
       "existing_benchmark_id": ""
+    },
+    {
+      "id": "external-bm_98bcaeea0470",
+      "name": "ANLI",
+      "source_url": "https://epochai.github.io/benchmarks/adversarial_nli",
+      "ai_type": "大模型",
+      "primary_capability": "知识与语言",
+      "secondary_capability": "自然语言推理",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: adversarial_nli_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_98bcaeea0470"
+    },
+    {
+      "id": "external-bm_aacf43266bf6",
+      "name": "Aider Polyglot",
+      "source_url": "https://epochai.github.io/benchmarks/aider_polyglot",
+      "ai_type": "大模型",
+      "primary_capability": "编程与软件工程",
+      "secondary_capability": "代码编辑",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: aider_polyglot_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_aacf43266bf6"
+    },
+    {
+      "id": "external-bm_db17842e80f3",
+      "name": "ALE-Bench",
+      "source_url": "https://epochai.github.io/benchmarks/ale_bench",
+      "ai_type": "大模型",
+      "primary_capability": "编程与软件工程",
+      "secondary_capability": "算法工程",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: ale_bench_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_db17842e80f3"
+    },
+    {
+      "id": "external-bm_84489da98c9d",
+      "name": "AlgoTune",
+      "source_url": "https://epochai.github.io/benchmarks/algotune",
+      "ai_type": "大模型",
+      "primary_capability": "编程与软件工程",
+      "secondary_capability": "算法优化",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: algotune_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_84489da98c9d"
+    },
+    {
+      "id": "external-bm_8517c6011c57",
+      "name": "Apex Agents",
+      "source_url": "https://epochai.github.io/benchmarks/apex_agents",
+      "ai_type": "智能体",
+      "primary_capability": "智能体与具身执行",
+      "secondary_capability": "游戏智能体",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: apex_agents_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_8517c6011c57"
+    },
+    {
+      "id": "external-bm_ba84c7d14e60",
+      "name": "ARC-AI2",
+      "source_url": "https://epochai.github.io/benchmarks/arc_ai2",
+      "ai_type": "大模型",
+      "primary_capability": "推理与数学",
+      "secondary_capability": "抽象推理",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: arc_ai2_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_ba84c7d14e60"
+    },
+    {
+      "id": "external-bm_6fd04b7a6393",
+      "name": "BALROG",
+      "source_url": "https://epochai.github.io/benchmarks/balrog",
+      "ai_type": "智能体",
+      "primary_capability": "智能体与具身执行",
+      "secondary_capability": "游戏智能体",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: balrog_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_6fd04b7a6393"
+    },
+    {
+      "id": "external-bm_dc8fd819e948",
+      "name": "BlueprintBench 2",
+      "source_url": "https://epochai.github.io/benchmarks/blueprint_bench_2",
+      "ai_type": "大模型",
+      "primary_capability": "编程与软件工程",
+      "secondary_capability": "代码生成",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: blueprint_bench_2_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_dc8fd819e948"
+    },
+    {
+      "id": "external-bm_b7c03ffabb48",
+      "name": "BoolQ",
+      "source_url": "https://epochai.github.io/benchmarks/bool_q",
+      "ai_type": "大模型",
+      "primary_capability": "知识与语言",
+      "secondary_capability": "自然语言推理",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: bool_q_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_b7c03ffabb48"
+    },
+    {
+      "id": "external-bm_1770c634893c",
+      "name": "BTF3",
+      "source_url": "https://epochai.github.io/benchmarks/btf3",
+      "ai_type": "大模型",
+      "primary_capability": "安全、对齐与可靠性",
+      "secondary_capability": "预测校准",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: btf3_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_1770c634893c"
+    },
+    {
+      "id": "external-bm_e7f378fd8d39",
+      "name": "CAD-Eval",
+      "source_url": "https://epochai.github.io/benchmarks/cad_eval",
+      "ai_type": "大模型-多模态",
+      "primary_capability": "编程与软件工程",
+      "secondary_capability": "CAD生成",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: cad_eval_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_e7f378fd8d39"
+    },
+    {
+      "id": "external-bm_83e593b7b193",
+      "name": "Chess Puzzles",
+      "source_url": "https://epochai.github.io/benchmarks/chess_puzzles",
+      "ai_type": "大模型",
+      "primary_capability": "推理与数学",
+      "secondary_capability": "逻辑推理",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: chess_puzzles",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_83e593b7b193"
+    },
+    {
+      "id": "external-bm_c0fbec20c6f4",
+      "name": "CL-Bench",
+      "source_url": "https://epochai.github.io/benchmarks/cl_bench",
+      "ai_type": "智能体",
+      "primary_capability": "智能体与具身执行",
+      "secondary_capability": "生活智能体",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: cl_bench_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_c0fbec20c6f4"
+    },
+    {
+      "id": "external-bm_a2aff0e1b139",
+      "name": "CL-Bench Life",
+      "source_url": "https://epochai.github.io/benchmarks/cl_bench_life",
+      "ai_type": "智能体",
+      "primary_capability": "智能体与具身执行",
+      "secondary_capability": "生活智能体",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: cl_bench_life_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_a2aff0e1b139"
+    },
+    {
+      "id": "external-bm_29b541981ee3",
+      "name": "CommonsenseQA 2",
+      "source_url": "https://epochai.github.io/benchmarks/common_sense_qa_2",
+      "ai_type": "大模型",
+      "primary_capability": "知识与语言",
+      "secondary_capability": "常识推理",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: common_sense_qa_2_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_29b541981ee3"
+    },
+    {
+      "id": "external-bm_b8af29818f7d",
+      "name": "CritPT",
+      "source_url": "https://epochai.github.io/benchmarks/critpt",
+      "ai_type": "大模型",
+      "primary_capability": "推理与数学",
+      "secondary_capability": "数学推理",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: critpt_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_b8af29818f7d"
+    },
+    {
+      "id": "external-bm_72be0bf94557",
+      "name": "CursorBench",
+      "source_url": "https://epochai.github.io/benchmarks/cursorbench",
+      "ai_type": "智能体",
+      "primary_capability": "编程与软件工程",
+      "secondary_capability": "代码编辑",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: cursorbench_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_72be0bf94557"
+    },
+    {
+      "id": "external-bm_761879831b61",
+      "name": "CyBench",
+      "source_url": "https://epochai.github.io/benchmarks/cybench",
+      "ai_type": "智能体",
+      "primary_capability": "安全、对齐与可靠性",
+      "secondary_capability": "网络安全",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: cybench_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_761879831b61"
+    },
+    {
+      "id": "external-bm_f7a3a5286e5e",
+      "name": "DeepResearchBench",
+      "source_url": "https://epochai.github.io/benchmarks/deepresearchbench",
+      "ai_type": "智能体",
+      "primary_capability": "智能体与具身执行",
+      "secondary_capability": "研究智能体",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: deepresearchbench_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_f7a3a5286e5e"
+    },
+    {
+      "id": "external-bm_5a1a373bb45e",
+      "name": "DeepSWE",
+      "source_url": "https://epochai.github.io/benchmarks/deepswe",
+      "ai_type": "智能体",
+      "primary_capability": "编程与软件工程",
+      "secondary_capability": "软件工程",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: deepswe_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_5a1a373bb45e"
+    },
+    {
+      "id": "external-bm_92bcdea3809d",
+      "name": "Enigma Eval",
+      "source_url": "https://epochai.github.io/benchmarks/enigma_eval",
+      "ai_type": "大模型",
+      "primary_capability": "推理与数学",
+      "secondary_capability": "解密推理",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: enigma_eval_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_92bcdea3809d"
+    },
+    {
+      "id": "external-bm_313d442feae9",
+      "name": "ExploitBench",
+      "source_url": "https://epochai.github.io/benchmarks/exploitbench",
+      "ai_type": "智能体",
+      "primary_capability": "安全、对齐与可靠性",
+      "secondary_capability": "漏洞利用",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: exploitbench_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_313d442feae9"
+    },
+    {
+      "id": "external-bm_8964ac6adf98",
+      "name": "FictionLiveBench",
+      "source_url": "https://epochai.github.io/benchmarks/fictionlivebench",
+      "ai_type": "大模型",
+      "primary_capability": "知识与语言",
+      "secondary_capability": "长文本理解",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: fictionlivebench_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_8964ac6adf98"
+    },
+    {
+      "id": "external-bm_cf23b42fe06c",
+      "name": "ForecastBench",
+      "source_url": "https://epochai.github.io/benchmarks/forecastbench",
+      "ai_type": "大模型",
+      "primary_capability": "安全、对齐与可靠性",
+      "secondary_capability": "预测校准",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: forecastbench_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_cf23b42fe06c"
+    },
+    {
+      "id": "external-bm_06c457f2f755",
+      "name": "FrontierCode",
+      "source_url": "https://epochai.github.io/benchmarks/frontiercode",
+      "ai_type": "大模型",
+      "primary_capability": "编程与软件工程",
+      "secondary_capability": "代码生成",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: frontiercode_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_06c457f2f755"
+    },
+    {
+      "id": "external-bm_3afd4c12664b",
+      "name": "FrontierMath",
+      "source_url": "https://epochai.github.io/benchmarks/frontiermath",
+      "ai_type": "大模型",
+      "primary_capability": "推理与数学",
+      "secondary_capability": "数学推理",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: frontiermath",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_3afd4c12664b"
+    },
+    {
+      "id": "external-bm_7a96277152bf",
+      "name": "FrontierMath Tier 4",
+      "source_url": "https://epochai.github.io/benchmarks/frontiermath_tier_4",
+      "ai_type": "大模型",
+      "primary_capability": "推理与数学",
+      "secondary_capability": "数学推理",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: frontiermath_tier_4",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_7a96277152bf"
+    },
+    {
+      "id": "external-bm_6c11530bc239",
+      "name": "FrontierSWE",
+      "source_url": "https://epochai.github.io/benchmarks/frontierswe",
+      "ai_type": "智能体",
+      "primary_capability": "编程与软件工程",
+      "secondary_capability": "软件工程",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: frontierswe_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_6c11530bc239"
+    },
+    {
+      "id": "external-bm_54ae75000955",
+      "name": "GBAEval",
+      "source_url": "https://epochai.github.io/benchmarks/gbaeval",
+      "ai_type": "大模型",
+      "primary_capability": "智能体与具身执行",
+      "secondary_capability": "游戏智能体",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: gbaeval_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_54ae75000955"
+    },
+    {
+      "id": "external-bm_fd3480e2bffd",
+      "name": "GDP.pdf",
+      "source_url": "https://epochai.github.io/benchmarks/gdp_pdf",
+      "ai_type": "大模型",
+      "primary_capability": "知识与语言",
+      "secondary_capability": "文档理解",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: gdp_pdf_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_fd3480e2bffd"
+    },
+    {
+      "id": "external-bm_3b18276c4981",
+      "name": "GDPVal",
+      "source_url": "https://epochai.github.io/benchmarks/gdpval",
+      "ai_type": "大模型",
+      "primary_capability": "编程与软件工程",
+      "secondary_capability": "代码验证",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: gdpval_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_3b18276c4981"
+    },
+    {
+      "id": "external-bm_693e64c7e8a0",
+      "name": "GeoBench",
+      "source_url": "https://epochai.github.io/benchmarks/geobench",
+      "ai_type": "大模型-多模态",
+      "primary_capability": "多模态理解与生成",
+      "secondary_capability": "地理理解",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: geobench_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_693e64c7e8a0"
+    },
+    {
+      "id": "external-bm_b1b946c88d29",
+      "name": "GSO",
+      "source_url": "https://epochai.github.io/benchmarks/gso",
+      "ai_type": "大模型",
+      "primary_capability": "编程与软件工程",
+      "secondary_capability": "代码优化",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: gso_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_b1b946c88d29"
+    },
+    {
+      "id": "external-bm_c623ae8bef66",
+      "name": "HellaSwag",
+      "source_url": "https://epochai.github.io/benchmarks/hella_swag",
+      "ai_type": "大模型",
+      "primary_capability": "知识与语言",
+      "secondary_capability": "常识推理",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: hella_swag_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_c623ae8bef66"
+    },
+    {
+      "id": "external-bm_1f1f927c543f",
+      "name": "HLE",
+      "source_url": "https://epochai.github.io/benchmarks/hle",
+      "ai_type": "大模型",
+      "primary_capability": "知识与语言",
+      "secondary_capability": "知识问答",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: hle_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_1f1f927c543f"
+    },
+    {
+      "id": "external-bm_1146f0003707",
+      "name": "LAMBADA",
+      "source_url": "https://epochai.github.io/benchmarks/lambada",
+      "ai_type": "大模型",
+      "primary_capability": "知识与语言",
+      "secondary_capability": "语言建模",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: lambada_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_1146f0003707"
+    },
+    {
+      "id": "external-bm_6fe5cbeb9f0d",
+      "name": "Lech Mazur Writing",
+      "source_url": "https://epochai.github.io/benchmarks/lech_mazur_writing",
+      "ai_type": "大模型",
+      "primary_capability": "知识与语言",
+      "secondary_capability": "创意写作",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: lech_mazur_writing_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_6fe5cbeb9f0d"
+    },
+    {
+      "id": "external-bm_337e8010dff4",
+      "name": "LiveBench",
+      "source_url": "https://epochai.github.io/benchmarks/live_bench",
+      "ai_type": "大模型",
+      "primary_capability": "知识与语言",
+      "secondary_capability": "综合评测",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: live_bench_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_337e8010dff4"
+    },
+    {
+      "id": "external-bm_3773bb02a166",
+      "name": "METR Time Horizons",
+      "source_url": "https://epochai.github.io/benchmarks/metr_time_horizons",
+      "ai_type": "大模型",
+      "primary_capability": "智能体与具身执行",
+      "secondary_capability": "任务持续时间",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: metr_time_horizons_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_3773bb02a166"
+    },
+    {
+      "id": "external-bm_0ac2d31edf5e",
+      "name": "MindCube",
+      "source_url": "https://epochai.github.io/benchmarks/mindcube",
+      "ai_type": "大模型-多模态",
+      "primary_capability": "推理与数学",
+      "secondary_capability": "空间推理",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: mindcube_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_0ac2d31edf5e"
+    },
+    {
+      "id": "external-bm_b497fda75484",
+      "name": "OpenBookQA",
+      "source_url": "https://epochai.github.io/benchmarks/open_book_qa",
+      "ai_type": "大模型",
+      "primary_capability": "知识与语言",
+      "secondary_capability": "知识问答",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: open_book_qa_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_b497fda75484"
+    },
+    {
+      "id": "external-bm_eea178a2909a",
+      "name": "OSWorld",
+      "source_url": "https://epochai.github.io/benchmarks/os_world",
+      "ai_type": "智能体",
+      "primary_capability": "智能体与具身执行",
+      "secondary_capability": "操作系统交互",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: os_world_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_eea178a2909a"
+    },
+    {
+      "id": "external-bm_308545cbb83f",
+      "name": "OSWorld 2",
+      "source_url": "https://epochai.github.io/benchmarks/osworld_2",
+      "ai_type": "智能体",
+      "primary_capability": "智能体与具身执行",
+      "secondary_capability": "操作系统交互",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: osworld_2_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_308545cbb83f"
+    },
+    {
+      "id": "external-bm_a8dd2a8437d4",
+      "name": "OTIS Mock AIME 2024-2025",
+      "source_url": "https://epochai.github.io/benchmarks/otis_mock_aime_2024_2025",
+      "ai_type": "大模型",
+      "primary_capability": "推理与数学",
+      "secondary_capability": "数学推理",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: otis_mock_aime_2024_2025",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_a8dd2a8437d4"
+    },
+    {
+      "id": "external-bm_ae458a639e83",
+      "name": "PIQA",
+      "source_url": "https://epochai.github.io/benchmarks/piqa",
+      "ai_type": "大模型",
+      "primary_capability": "知识与语言",
+      "secondary_capability": "常识推理",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: piqa_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_ae458a639e83"
+    },
+    {
+      "id": "external-bm_91a1cc676c43",
+      "name": "PostTrainBench",
+      "source_url": "https://epochai.github.io/benchmarks/posttrainbench",
+      "ai_type": "大模型",
+      "primary_capability": "知识与语言",
+      "secondary_capability": "后训练评测",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: posttrainbench_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_91a1cc676c43"
+    },
+    {
+      "id": "external-bm_d55dda43e8d4",
+      "name": "ProofBench",
+      "source_url": "https://epochai.github.io/benchmarks/proofbench",
+      "ai_type": "大模型",
+      "primary_capability": "推理与数学",
+      "secondary_capability": "定理证明",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: proofbench_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_d55dda43e8d4"
+    },
+    {
+      "id": "external-bm_1213ff44b204",
+      "name": "RLI",
+      "source_url": "https://epochai.github.io/benchmarks/rli",
+      "ai_type": "大模型",
+      "primary_capability": "知识与语言",
+      "secondary_capability": "阅读理解",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: rli_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_1213ff44b204"
+    },
+    {
+      "id": "external-bm_a10fac4e9d66",
+      "name": "SciCode",
+      "source_url": "https://epochai.github.io/benchmarks/scicode",
+      "ai_type": "大模型",
+      "primary_capability": "编程与软件工程",
+      "secondary_capability": "科学代码",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: scicode_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_a10fac4e9d66"
+    },
+    {
+      "id": "external-bm_c1d1e1bdb808",
+      "name": "ScienceQA",
+      "source_url": "https://epochai.github.io/benchmarks/science_qa",
+      "ai_type": "大模型",
+      "primary_capability": "知识与语言",
+      "secondary_capability": "科学问答",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: science_qa_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_c1d1e1bdb808"
+    },
+    {
+      "id": "external-bm_2dbcb81afd65",
+      "name": "SimpleBench",
+      "source_url": "https://epochai.github.io/benchmarks/simplebench",
+      "ai_type": "大模型",
+      "primary_capability": "推理与数学",
+      "secondary_capability": "简单推理",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: simplebench_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_2dbcb81afd65"
+    },
+    {
+      "id": "external-bm_cc9983228c2b",
+      "name": "SimpleQA Verified",
+      "source_url": "https://epochai.github.io/benchmarks/simpleqa_verified",
+      "ai_type": "大模型",
+      "primary_capability": "知识与语言",
+      "secondary_capability": "事实问答",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: simpleqa_verified",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_cc9983228c2b"
+    },
+    {
+      "id": "external-bm_7da3865dc94d",
+      "name": "SpatialViz-Bench",
+      "source_url": "https://epochai.github.io/benchmarks/spatialviz_bench",
+      "ai_type": "大模型-多模态",
+      "primary_capability": "多模态理解与生成",
+      "secondary_capability": "空间视觉",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: spatialviz_bench_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_7da3865dc94d"
+    },
+    {
+      "id": "external-bm_0445fa0509b1",
+      "name": "SuperGLUE",
+      "source_url": "https://epochai.github.io/benchmarks/superglue",
+      "ai_type": "大模型",
+      "primary_capability": "知识与语言",
+      "secondary_capability": "自然语言理解",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: superglue_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_0445fa0509b1"
+    },
+    {
+      "id": "external-bm_04e11b163cc0",
+      "name": "Surface Evolver Bench",
+      "source_url": "https://epochai.github.io/benchmarks/surface_evolver_bench",
+      "ai_type": "大模型",
+      "primary_capability": "编程与软件工程",
+      "secondary_capability": "科学计算",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: surface_evolver_bench_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_04e11b163cc0"
+    },
+    {
+      "id": "external-bm_8cc43c574d29",
+      "name": "SWE-bench Verified",
+      "source_url": "https://epochai.github.io/benchmarks/swe_bench_verified",
+      "ai_type": "智能体",
+      "primary_capability": "编程与软件工程",
+      "secondary_capability": "软件工程",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: swe_bench_verified",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_8cc43c574d29"
+    },
+    {
+      "id": "external-bm_538f1c8f28e6",
+      "name": "TerminalBench",
+      "source_url": "https://epochai.github.io/benchmarks/terminalbench",
+      "ai_type": "智能体",
+      "primary_capability": "编程与软件工程",
+      "secondary_capability": "终端操作",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: terminalbench_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_538f1c8f28e6"
+    },
+    {
+      "id": "external-bm_98f9a9fedb5d",
+      "name": "The Agent Company",
+      "source_url": "https://epochai.github.io/benchmarks/the_agent_company",
+      "ai_type": "智能体",
+      "primary_capability": "智能体与具身执行",
+      "secondary_capability": "企业智能体",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: the_agent_company_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_98f9a9fedb5d"
+    },
+    {
+      "id": "external-bm_57ca8658c772",
+      "name": "TriviaQA",
+      "source_url": "https://epochai.github.io/benchmarks/trivia_qa",
+      "ai_type": "大模型",
+      "primary_capability": "知识与语言",
+      "secondary_capability": "知识问答",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: trivia_qa_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_57ca8658c772"
+    },
+    {
+      "id": "external-bm_22be5a88a4f9",
+      "name": "VendingBench 2",
+      "source_url": "https://epochai.github.io/benchmarks/vending_bench_2",
+      "ai_type": "智能体",
+      "primary_capability": "智能体与具身执行",
+      "secondary_capability": "交互智能体",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: vending_bench_2_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_22be5a88a4f9"
+    },
+    {
+      "id": "external-bm_8e7172895e1a",
+      "name": "Video-MME",
+      "source_url": "https://epochai.github.io/benchmarks/video_mme",
+      "ai_type": "大模型-多模态",
+      "primary_capability": "多模态理解与生成",
+      "secondary_capability": "视频理解",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: video_mme_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_8e7172895e1a"
+    },
+    {
+      "id": "external-bm_b4931575828f",
+      "name": "VPCT",
+      "source_url": "https://epochai.github.io/benchmarks/vpct",
+      "ai_type": "大模型",
+      "primary_capability": "安全、对齐与可靠性",
+      "secondary_capability": "价值观对齐",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: vpct_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_b4931575828f"
+    },
+    {
+      "id": "external-bm_e1f5e102c772",
+      "name": "WebDev Arena",
+      "source_url": "https://epochai.github.io/benchmarks/webdev_arena",
+      "ai_type": "大模型",
+      "primary_capability": "编程与软件工程",
+      "secondary_capability": "Web开发",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: webdev_arena_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_e1f5e102c772"
+    },
+    {
+      "id": "external-bm_d477f4baae6c",
+      "name": "WeirdML",
+      "source_url": "https://epochai.github.io/benchmarks/weirdml",
+      "ai_type": "大模型",
+      "primary_capability": "推理与数学",
+      "secondary_capability": "非标准推理",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: weirdml_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_d477f4baae6c"
+    },
+    {
+      "id": "external-bm_733e4d458c11",
+      "name": "WinoGrande",
+      "source_url": "https://epochai.github.io/benchmarks/wino_grande",
+      "ai_type": "大模型",
+      "primary_capability": "知识与语言",
+      "secondary_capability": "常识推理",
+      "current_updated": "2026-07-28",
+      "next_updated": "",
+      "update_frequency": "不定",
+      "evaluation_logic": "专项评测 · 越大越好",
+      "data_type": "Epoch AI Benchmark Hub",
+      "language": "英文",
+      "reference_value": "中",
+      "github_url": "",
+      "paper_title": "",
+      "paper_url": "",
+      "authors": "Epoch AI",
+      "publisher": "Epoch AI Benchmark Hub",
+      "origin_country": "美国",
+      "note": "Data imported from Epoch AI Benchmark Hub CSV: wino_grande_external",
+      "record_status": "补录项",
+      "existing_benchmark_id": "bm_733e4d458c11"
     }
   ],
-  "audit": [
-    {
+  "audit": {
+    "0": {
       "name": "ARC-AGI1",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": "https://arcprize.org/leaderboard"
     },
-    {
+    "1": {
       "name": "ARC-AGI2",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": "https://arcprize.org/leaderboard"
     },
-    {
+    "2": {
       "name": "ARC-AGI3",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": "https://arcprize.org/leaderboard"
     },
-    {
+    "3": {
       "name": "Agent Arena",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": "https://github.com/lm-sys/FastChat"
     },
-    {
+    "4": {
       "name": "Agent Arena-Confirmed Success",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": "https://github.com/lm-sys/FastChat"
     },
-    {
+    "5": {
       "name": "Agent Arena-Praise vs Complaint",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": "https://github.com/lm-sys/FastChat"
     },
-    {
+    "6": {
       "name": "Agent Arena-Steerability",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": "https://github.com/lm-sys/FastChat"
     },
-    {
+    "7": {
       "name": "Agent Arena-Bash Recovery  Bash",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": "https://github.com/lm-sys/FastChat"
     },
-    {
+    "8": {
       "name": "Agent Arena-Tool Hallucination",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": "https://github.com/lm-sys/FastChat"
     },
-    {
+    "9": {
       "name": "ChatArena-Text Arena",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": ""
     },
-    {
+    "10": {
       "name": "ChatArena-Search Arena",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": ""
     },
-    {
+    "11": {
       "name": "ChatArena-Vision Arena",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": ""
     },
-    {
+    "12": {
       "name": "ChatArena-Document Arena",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": "https://arena.ai/leaderboard/document"
     },
-    {
+    "13": {
       "name": "Code Arena-WebDev",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": ""
     },
-    {
+    "14": {
       "name": "Code Arena-Image-to-WebDev",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": "https://arena.ai/leaderboard/code/image-to-webdev"
     },
-    {
+    "15": {
       "name": "Image Arena-Text-to-Image",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": ""
     },
-    {
+    "16": {
       "name": "Image Arena-Image Edit",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": "https://arena.ai/leaderboard/image-edit"
     },
-    {
+    "17": {
       "name": "Video Arena-Text-to-Video",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": "https://arena.ai/leaderboard/text-to-video"
     },
-    {
+    "18": {
       "name": "Video Arena-Image-to-Video",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": ""
     },
-    {
+    "19": {
       "name": "Video Arena-Video Edit",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": "https://arena.ai/leaderboard/video-edit"
     },
-    {
+    "20": {
       "name": "MMLU-Average0",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": ""
     },
-    {
+    "21": {
       "name": "MMLU-Humanities",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": ""
     },
-    {
+    "22": {
       "name": "MMLU-Social Sciences",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": ""
     },
-    {
+    "23": {
       "name": "MMLU-STEM",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": ""
     },
-    {
+    "24": {
       "name": "MMLU-Other",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": ""
     },
-    {
+    "25": {
       "name": "CMMLU0-平均值",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://github.com/haonan-li/CMMLU"
     },
-    {
+    "26": {
       "name": "CMMLU0-STEM",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://github.com/haonan-li/CMMLU"
     },
-    {
+    "27": {
       "name": "CMMLU0-人文学科",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://github.com/haonan-li/CMMLU"
     },
-    {
+    "28": {
       "name": "CMMLU0-社会科学",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://github.com/haonan-li/CMMLU"
     },
-    {
+    "29": {
       "name": "CMMLU0-其他",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://github.com/haonan-li/CMMLU"
     },
-    {
+    "30": {
       "name": "CMMLU0-中国特定主题",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://github.com/haonan-li/CMMLU"
     },
-    {
+    "31": {
       "name": "CMMLU5-平均值",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://github.com/haonan-li/CMMLU"
     },
-    {
+    "32": {
       "name": "CMMLU5-STEM",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://github.com/haonan-li/CMMLU"
     },
-    {
+    "33": {
       "name": "CMMLU5-人文学科",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://github.com/haonan-li/CMMLU"
     },
-    {
+    "34": {
       "name": "CMMLU5-社会科学",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://github.com/haonan-li/CMMLU"
     },
-    {
+    "35": {
       "name": "CMMLU5-其他",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://github.com/haonan-li/CMMLU"
     },
-    {
+    "36": {
       "name": "CMMLU5-中国特定主题",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://github.com/haonan-li/CMMLU"
     },
-    {
+    "37": {
       "name": "C-Eval0-平均",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://cevalbenchmark.com/"
     },
-    {
+    "38": {
       "name": "C-Eval0-STEM",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://cevalbenchmark.com/"
     },
-    {
+    "39": {
       "name": "C-Eval0-SocialScience",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://cevalbenchmark.com/"
     },
-    {
+    "40": {
       "name": "C-Eval0-Humanities",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://cevalbenchmark.com/"
     },
-    {
+    "41": {
       "name": "C-Eval0-Other",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://cevalbenchmark.com/"
     },
-    {
+    "42": {
       "name": "C-Eval5-平均",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://cevalbenchmark.com/"
     },
-    {
+    "43": {
       "name": "C-Eval5-STEM",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://cevalbenchmark.com/"
     },
-    {
+    "44": {
       "name": "C-Eval5-SocialScience",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://cevalbenchmark.com/"
     },
-    {
+    "45": {
       "name": "C-Eval5-Humanities",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://cevalbenchmark.com/"
     },
-    {
+    "46": {
       "name": "C-Eval5-Other",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": "https://cevalbenchmark.com/"
     },
-    {
+    "47": {
       "name": "MMLU-Pro",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": "https://huggingface.co/spaces/TIGER-Lab/MMLU-Pro"
     },
-    {
+    "48": {
       "name": "GPQA",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": "https://github.com/idavidrein/gpqa"
     },
-    {
+    "49": {
       "name": "IFEval",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": ""
     },
-    {
+    "50": {
       "name": "BBH (BIG-Bench Hard)",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": "https://github.com/suzgunmirac/BIG-Bench-Hard"
     },
-    {
+    "51": {
       "name": "MATH",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": "https://github.com/hendrycks/math/"
     },
-    {
+    "52": {
       "name": "MuSR",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": ""
     },
-    {
+    "53": {
       "name": "GSM8K",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": ""
     },
-    {
+    "54": {
       "name": "EvalPlus-MBPP+",
       "status": "Excel 已纳入",
       "origin_country": "美国/国际合作",
       "source_url": ""
     },
-    {
+    "55": {
       "name": "EvalPlus-HumanEval+",
       "status": "Excel 已纳入",
       "origin_country": "美国/国际合作",
       "source_url": ""
     },
-    {
+    "56": {
       "name": "EvalPerf-MBPP+",
       "status": "Excel 已纳入",
       "origin_country": "待核验",
       "source_url": ""
     },
-    {
+    "57": {
       "name": "EvalPerf-HumanEval+",
       "status": "Excel 已纳入",
       "origin_country": "待核验",
       "source_url": ""
     },
-    {
+    "58": {
       "name": "BigCodeBench-hard-average",
       "status": "Excel 已纳入",
       "origin_country": "美国/国际合作",
       "source_url": ""
     },
-    {
+    "59": {
       "name": "CrossCodeEval",
       "status": "Excel 已纳入",
       "origin_country": "美国/国际合作",
       "source_url": ""
     },
-    {
+    "60": {
       "name": "ClassEval-Compositional Generation-class",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "61": {
       "name": "ClassEval-Incremental Generation-class",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "62": {
       "name": "ClassEval-Holistic Generation-class",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "63": {
       "name": "CRUXEval-I-pass@1",
       "status": "Excel 已纳入",
       "origin_country": "美国/国际合作",
       "source_url": ""
     },
-    {
+    "64": {
       "name": "CRUXEval-O-pass@1",
       "status": "Excel 已纳入",
       "origin_country": "美国/国际合作",
       "source_url": ""
     },
-    {
+    "65": {
       "name": "Evo-Eval",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": "https://evo-eval.github.io/leaderboard.html"
     },
-    {
+    "66": {
       "name": "LiveCodeBench-Pass@1",
       "status": "Excel 已纳入",
       "origin_country": "美国/国际合作",
       "source_url": ""
     },
-    {
+    "67": {
       "name": "MHPP-Pass@1 Greedy",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "68": {
       "name": "NaturalCodeBench-NCB Total",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "69": {
       "name": "EffiBench",
       "status": "Excel 已纳入",
       "origin_country": "美国/国际合作",
       "source_url": ""
     },
-    {
+    "70": {
       "name": "SWE-bench-Multimodal",
       "status": "Excel 已纳入",
       "origin_country": "美国/国际合作",
       "source_url": ""
     },
-    {
+    "71": {
       "name": "SWE-bench Multilingual",
       "status": "Excel 已纳入",
       "origin_country": "美国/国际合作",
       "source_url": ""
     },
-    {
+    "72": {
       "name": "TruthfulQA",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": ""
     },
-    {
+    "73": {
       "name": "HallucinationBench-FigureAcc",
       "status": "Excel 已纳入",
       "origin_country": "中国/美国合作",
       "source_url": ""
     },
-    {
+    "74": {
       "name": "HallucinationBench-QuestionAcc",
       "status": "Excel 已纳入",
       "origin_country": "中国/美国合作",
       "source_url": ""
     },
-    {
+    "75": {
       "name": "MMMU-Pro-Vision",
       "status": "Excel 已纳入",
       "origin_country": "中国/美国合作",
       "source_url": ""
     },
-    {
+    "76": {
       "name": "MMMU-Pro-Standard",
       "status": "Excel 已纳入",
       "origin_country": "中国/美国合作",
       "source_url": ""
     },
-    {
+    "77": {
       "name": "MMMU-Pro-Overall",
       "status": "Excel 已纳入",
       "origin_country": "中国/美国合作",
       "source_url": ""
     },
-    {
+    "78": {
       "name": "MMMU(Val）",
       "status": "Excel 已纳入",
       "origin_country": "中国/美国合作",
       "source_url": ""
     },
-    {
+    "79": {
       "name": "OpenCompass-语言",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "80": {
       "name": "OpenCompass-知识",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "81": {
       "name": "OpenCompass-推理",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "82": {
       "name": "OpenCompass-数学",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "83": {
       "name": "OpenCompass-代码",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "84": {
       "name": "OpenCompass-智能体",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "85": {
       "name": "OpenCompass-通用感知",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "86": {
       "name": "OpenCompass-空间感知",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "87": {
       "name": "OpenCompass-信息图形感知",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "88": {
       "name": "OpenCompass-多模态推理",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "89": {
       "name": "OpenCompass-多模态创作",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "90": {
       "name": "OpenCompass-多模态智能体",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "91": {
       "name": "OpenCompass-多模态数学推理",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "92": {
       "name": "CompassArena-大语言模型",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "93": {
       "name": "CompassArena-多模态大模型",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "94": {
       "name": "OpenCompass-价值对齐",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "95": {
       "name": "OpenCompass-对齐可靠",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "96": {
       "name": "OpenCompass-安全防御",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "97": {
       "name": "Salad-Bench",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "98": {
       "name": "GenAI-Bench-Image Generation",
       "status": "Excel 已纳入",
       "origin_country": "中国/美国合作",
       "source_url": ""
     },
-    {
+    "99": {
       "name": "GenAI-Bench-Image Editing",
       "status": "Excel 已纳入",
       "origin_country": "中国/美国合作",
       "source_url": ""
     },
-    {
+    "100": {
       "name": "GenAI-Bench-Video Generation",
       "status": "Excel 已纳入",
       "origin_country": "中国/美国合作",
       "source_url": ""
     },
-    {
+    "101": {
       "name": "LongBench-Overall-w/CoT",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "102": {
       "name": "WebArena",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": ""
     },
-    {
+    "103": {
       "name": "AgentBench-AVG",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "104": {
       "name": "MT-Bench",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "105": {
       "name": "CLEVRER",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": ""
     },
-    {
+    "106": {
       "name": "CALVIN",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": ""
     },
-    {
+    "107": {
       "name": "BBEH",
       "status": "Excel 已纳入",
       "origin_country": "美国",
       "source_url": ""
     },
-    {
+    "108": {
       "name": "EBench",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "109": {
       "name": "OpenCompass-物理智能",
       "status": "Excel 已纳入",
       "origin_country": "中国",
       "source_url": ""
     },
-    {
+    "110": {
       "name": "HELM",
       "status": "补录项",
       "origin_country": "美国",
       "source_url": "https://crfm.stanford.edu/helm/latest/"
     },
-    {
+    "111": {
       "name": "GAIA",
       "status": "补录项",
       "origin_country": "法国/美国合作",
       "source_url": "https://huggingface.co/gaia-benchmark/GAIA"
     },
-    {
+    "112": {
       "name": "AndroidWorld",
       "status": "补录项",
       "origin_country": "美国",
       "source_url": "https://github.com/google-research/android_world"
     },
-    {
+    "113": {
       "name": "ManiSkill",
       "status": "补录项",
       "origin_country": "中国",
       "source_url": "https://maniskill.ai/"
     },
-    {
+    "114": {
       "name": "HumanoidBench",
       "status": "补录项",
       "origin_country": "美国/国际合作",
       "source_url": "https://humanoid-bench.github.io/"
     },
-    {
+    "115": {
       "name": "SafetyBench",
       "status": "补录项",
       "origin_country": "中国",
       "source_url": "https://github.com/PKU-Alignment/SafetyBench"
-    }
-  ]
+    },
+    "external_added": 65,
+    "external_source": "Epoch AI Benchmark Hub",
+    "total_records": 181
+  }
 }
