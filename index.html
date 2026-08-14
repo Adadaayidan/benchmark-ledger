@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="可追溯的大模型评测基准与一手信源数据库">
+  <title>基准信源库 · Benchmark Ledger</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="#catalog" aria-label="基准信源库首页">
+      <span class="brand-mark" aria-hidden="true">B/</span>
+      <span class="brand-copy"><strong>基准信源库</strong><small>Benchmark Ledger</small></span>
+    </a>
+    <nav class="top-tabs" aria-label="主导航">
+      <button class="tab-button" data-view="standards">评测标准库</button>
+      <button class="tab-button is-active" data-view="catalog">评测目录</button>
+      <button class="tab-button" data-view="boundary">能力边界</button>
+      <button class="tab-button" data-view="map">能力图谱</button>
+      <button class="tab-button" data-view="method">数据方法</button>
+    </nav>
+    <div class="header-actions">
+      <span class="data-state" id="data-state"><i></i> 数据已载入</span>
+      <button class="button secondary update-button" id="update-button" type="button" title="从来源快照更新数据" hidden><span class="update-icon" aria-hidden="true">↻</span><span class="update-label">更新数据</span></button>
+      <button class="button secondary" id="export-button" type="button"><span aria-hidden="true">↓</span> 导出 CSV</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="view" id="standards-view" data-view-panel="standards">
+      <div class="page-heading compact standards-heading">
+        <div>
+          <p class="eyebrow">BENCHMARK STANDARD LIBRARY</p>
+          <h1>评测标准库</h1>
+          <p class="page-summary">把评测名称、能力维度、测评逻辑、来源机构与论文放在同一张可检索的工作表里，方便判断一个标准是否值得长期跟踪。</p>
+        </div>
+        <div class="standards-meta"><span>字段来源</span><strong id="standards-source-count">—</strong><small id="standards-source-note">正在读取映射表</small></div>
+      </div>
+
+      <section class="standards-insight-strip">
+        <div><span class="insight-kicker">纳入范围</span><strong id="standards-total">—</strong><small>条标准记录</small></div>
+        <div><span class="insight-kicker">中国 / 美国 / 其他</span><strong id="standards-country-mix">—</strong><small>按发布机构或作者归属标注</small></div>
+        <div><span class="insight-kicker">定期更新</span><strong id="standards-refresh-rate">—</strong><small>有明确更新频率或下次更新时间</small></div>
+        <div><span class="insight-kicker">补录检查</span><strong id="standards-supplemental">—</strong><small>重要标准补录项</small></div>
+      </section>
+
+      <section class="standards-audit" aria-label="重要标准纳入检查">
+        <div class="section-heading"><div><h2>重要标准纳入检查</h2><span>区分“Excel 已纳入”和“本次补录”，避免把缺失当成没有评测</span></div><span id="standards-audit-summary"></span></div>
+        <div class="audit-chips" id="standards-audit-chips"></div>
+      </section>
+
+      <section class="standards-toolbar" aria-label="评测标准筛选">
+        <label class="standards-search"><span>搜索标准、机构、作者或论文</span><input id="standards-search" type="search" placeholder="例如：OpenCompass、机器人、MMLU" autocomplete="off"></label>
+        <label><span>来源归属</span><select id="standards-country-filter"><option value="">全部地区</option></select></label>
+        <label><span>AI 类型</span><select id="standards-type-filter"><option value="">全部类型</option></select></label>
+        <label><span>一级能力</span><select id="standards-capability-filter"><option value="">全部能力</option></select></label>
+        <label><span>更新状态</span><select id="standards-update-filter"><option value="">全部状态</option><option value="recurring">有频率/下次更新时间</option><option value="recent">最近更新（12个月内）</option><option value="supplemental">本次补录</option></select></label>
+        <button class="icon-button" id="standards-reset" type="button" title="清除筛选" aria-label="清除筛选">↺</button>
+      </section>
+
+      <section class="standards-table-section">
+        <div class="section-heading"><div><h2>评测标准列表</h2><span>横向滚动可查看更多字段；点击名称查看完整资料</span></div><span id="standards-result-count"></span></div>
+        <div class="standards-table-wrap">
+          <table class="standards-table">
+            <thead><tr><th>名称</th><th>来源链接</th><th>AI 类型</th><th>一级能力</th><th>二级能力</th><th>更新时间</th><th>测评逻辑</th><th>数据类型</th><th>语言</th><th>参考价值</th><th>GitHub</th><th>论文 / 作者</th><th>机构 / 作者归属</th></tr></thead>
+            <tbody id="standards-rows"></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="standards-empty" hidden><strong>没有匹配的评测标准</strong><span>请调整关键词或筛选条件。</span></div>
+      </section>
+    </section>
+
+    <section class="view is-active" id="catalog-view" data-view-panel="catalog">
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">EVIDENCE-FIRST BENCHMARK INDEX</p>
+          <h1>大模型评测基准与信源</h1>
+          <p class="page-summary">优先呈现可直接追溯到结果页、代码仓库与论文的评测记录。</p>
+        </div>
+        <div class="dataset-meta"><span>数据源</span><strong id="source-file">载入中</strong><small id="imported-at"></small></div>
+      </div>
+
+      <section class="metrics" aria-label="数据概览">
+        <article class="metric"><span>收录基准</span><strong id="metric-total">—</strong><small>独立评测条目</small></article>
+        <article class="metric"><span>A/B 级信源</span><strong id="metric-traceable">—</strong><small id="metric-traceable-rate">可追溯比例</small></article>
+        <article class="metric"><span>直接结果页</span><strong id="metric-direct">—</strong><small>可点击 URL</small></article>
+        <article class="metric metric-warning"><span>待处理问题</span><strong id="metric-issues">—</strong><small>警告与错误</small></article>
+      </section>
+
+      <div class="quality-strip">
+        <div><span class="quality-icon" aria-hidden="true">✓</span><strong>来源完整度评分</strong><span>衡量可追溯性，不等同于人工核验结论</span></div>
+        <button class="text-button" data-view-jump="method">查看分级规则 <span aria-hidden="true">→</span></button>
+      </div>
+
+      <section class="toolbar" aria-label="数据筛选">
+        <label class="search-box">
+          <span aria-hidden="true">⌕</span>
+          <input id="search-input" type="search" placeholder="搜索基准、能力或备注" autocomplete="off">
+        </label>
+        <label><span>AI 类型</span><select id="type-filter"><option value="">全部类型</option></select></label>
+        <label><span>信源等级</span><select id="evidence-filter"><option value="">全部等级</option><option value="A">A · 多源直接</option><option value="B">B · 主要来源</option><option value="C">C · 元数据</option><option value="D">D · 待补来源</option></select></label>
+        <label><span>语言</span><select id="language-filter"><option value="">全部语言</option></select></label>
+        <label><span>排序</span><select id="sort-filter"><option value="authority">信源完整度</option><option value="updated">最近更新</option><option value="name">名称</option><option value="issues">问题数量</option></select></label>
+        <button class="icon-button" id="reset-filters" type="button" title="清除筛选" aria-label="清除筛选">↺</button>
+      </section>
+
+      <div class="catalog-layout">
+        <aside class="facet-panel">
+          <div class="panel-title"><h2>能力维度</h2><button class="text-button small" id="clear-capability">全部</button></div>
+          <div class="facet-list" id="capability-list" aria-label="按能力维度筛选"></div>
+          <label class="traceable-toggle"><input id="traceable-only" type="checkbox"><span>仅显示 A/B 级信源</span></label>
+        </aside>
+
+        <section class="results-panel" aria-live="polite">
+          <div class="results-heading">
+            <div><h2>评测记录</h2><span id="result-count">载入中</span></div>
+            <div class="legend"><span><i class="tier-dot tier-a"></i>A 级</span><span><i class="tier-dot tier-b"></i>B 级</span><span><i class="tier-dot tier-c"></i>C 级</span><span><i class="tier-dot tier-d"></i>D 级</span></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th class="select-cell"><span class="sr-only">选择</span></th><th>Benchmark</th><th>能力维度</th><th>AI 类型</th><th>信源</th><th>更新时间</th><th>问题</th><th class="action-cell"><span class="sr-only">详情</span></th></tr></thead>
+              <tbody id="benchmark-rows"><tr><td colspan="8" class="loading-row">正在读取数据库…</td></tr></tbody>
+            </table>
+          </div>
+          <div class="empty-state" id="empty-state" hidden><strong>没有匹配记录</strong><span>当前筛选条件下没有数据。</span></div>
+          <footer class="pagination"><span id="page-summary"></span><div><button class="icon-button" id="prev-page" aria-label="上一页">←</button><span id="page-number">1 / 1</span><button class="icon-button" id="next-page" aria-label="下一页">→</button></div></footer>
+        </section>
+      </div>
+    </section>
+
+    <section class="view" id="boundary-view" data-view-panel="boundary">
+      <div class="page-heading compact">
+        <div>
+          <p class="eyebrow">CAPABILITY FRONTIER INDEX</p>
+          <h1>模型能力边界</h1>
+          <p class="page-summary">按模型公开发布日期观察能力前沿，并在同一时间窗口内比较不同模型。</p>
+        </div>
+        <div class="boundary-method-note"><span>指数口径</span><strong>0–100</strong><small id="results-updated">原始成绩标准化 · 子能力等权</small></div>
+      </div>
+
+      <section class="boundary-metrics" aria-label="模型结果概览">
+        <article><span>模型 / 系统</span><strong id="boundary-model-count">—</strong><small>含推理配置变体</small></article>
+        <article><span>原始观测</span><strong id="boundary-observation-count">—</strong><small>逐项保留来源定位</small></article>
+        <article><span>发布日期覆盖</span><strong id="boundary-date-rate">—</strong><small id="boundary-date-count">—</small></article>
+        <article><span>结果来源</span><strong id="boundary-source-count">—</strong><small>官方 API / Excel / JSON</small></article>
+      </section>
+
+      <section class="boundary-source-strip" aria-labelledby="boundary-source-title">
+        <div class="section-heading"><h2 id="boundary-source-title">一手结果来源</h2><span>官网、抓取方式与快照均可追溯</span></div>
+        <div class="boundary-source-links" id="boundary-source-links"></div>
+      </section>
+
+      <section class="boundary-toolbar" aria-label="能力边界筛选">
+        <div class="segmented-control" id="boundary-grain" aria-label="时间粒度">
+          <button type="button" data-grain="quarter" class="is-active">季度</button>
+          <button type="button" data-grain="month">月份</button>
+        </div>
+        <label><span>能力维度</span><select id="boundary-capability"></select></label>
+        <label><span>发布时间</span><select id="boundary-period"></select></label>
+        <label class="boundary-search"><span>模型</span><input id="boundary-search" type="search" placeholder="搜索模型或机构" autocomplete="off"></label>
+      </section>
+
+      <div class="boundary-analysis-layout">
+        <section class="boundary-section timeline-section">
+          <div class="section-heading"><h2 id="frontier-title">能力前沿</h2><span>历史最优边界值</span></div>
+          <div class="timeline-chart" id="frontier-chart" aria-label="能力前沿时间序列"></div>
+        </section>
+        <section class="boundary-section coverage-section-compact">
+          <div class="section-heading"><h2>六维结果覆盖</h2><span>有观测的模型数</span></div>
+          <div class="boundary-coverage-list" id="boundary-coverage-list"></div>
+        </section>
+      </div>
+
+      <section class="country-radar-section" aria-labelledby="country-radar-title">
+        <div class="country-radar-heading">
+          <div><h2 id="country-radar-title">国家能力雷达</h2><span>按模型发布机构所属国家 / 地区聚合</span></div>
+          <div class="segmented-control radar-mode-control" id="radar-mode" aria-label="雷达图模式">
+            <button type="button" data-radar-mode="compare" class="is-active">国家对比</button>
+            <button type="button" data-radar-mode="evolution">时间演进</button>
+          </div>
+        </div>
+        <div class="country-radar-layout">
+          <div class="country-radar-chart" id="country-radar-chart" aria-live="polite"></div>
+          <aside class="country-radar-controls">
+            <fieldset id="radar-country-list"><legend>对比国家</legend></fieldset>
+            <label id="radar-country-select-wrap" hidden><span>国家 / 地区</span><select id="radar-country-select"></select></label>
+            <div class="radar-legend" id="radar-legend"></div>
+            <p id="radar-note"></p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="boundary-table-section">
+        <div class="section-heading"><div><h2>同期模型对比</h2><span id="boundary-period-summary"></span></div><span id="boundary-result-count"></span></div>
+        <div class="boundary-table-wrap">
+          <table class="boundary-table">
+            <thead><tr><th>排名</th><th>模型 / 系统</th><th>发布日期</th><th>边界值</th><th>覆盖度</th><th>可信度</th><th>六维画像</th><th></th></tr></thead>
+            <tbody id="boundary-rows"></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="boundary-empty" hidden><strong>该时期暂无可比较模型</strong><span>没有同时满足发布日期和能力观测的数据。</span></div>
+      </section>
+    </section>
+
+    <section class="view" id="map-view" data-view-panel="map">
+      <div class="page-heading compact">
+        <div><p class="eyebrow">CAPABILITY COVERAGE</p><h1>能力图谱</h1><p class="page-summary">按统一的六维能力体系展示覆盖分布；综合评测可计入多个维度。</p></div>
+      </div>
+      <div class="map-layout">
+        <section class="coverage-section"><div class="section-heading"><h2>六维能力覆盖</h2><span id="capability-total"></span></div><div class="bar-chart" id="capability-chart"></div></section>
+        <section class="coverage-section"><div class="section-heading"><h2>AI 类型分布</h2><span>按记录数</span></div><div class="type-distribution" id="type-distribution"></div></section>
+      </div>
+      <section class="coverage-table-section"><div class="section-heading"><h2>覆盖明细</h2><span>能力维度 × AI 类型，可重复计数</span></div><div class="matrix-wrap"><table id="coverage-matrix"></table></div></section>
+    </section>
+
+    <section class="view" id="method-view" data-view-panel="method">
+      <div class="page-heading compact">
+        <div><p class="eyebrow">PROVENANCE METHODOLOGY</p><h1>信源分级与数据模型</h1><p class="page-summary">将“资料完整”“一手来源”“独立验证”和“厂商自报”拆成不同字段。</p></div>
+      </div>
+      <section class="method-grid">
+        <article class="method-block"><span class="tier-badge tier-a-bg">A</span><div><h2>多源可追溯</h2><p>来源完整度 70–100；通常同时包含直接结果页，以及仓库或论文元数据。</p></div></article>
+        <article class="method-block"><span class="tier-badge tier-b-bg">B</span><div><h2>主要来源可追溯</h2><p>来源完整度 45–69；至少具备一个直接结果页或代码仓库，并有部分辅助元数据。</p></div></article>
+        <article class="method-block"><span class="tier-badge tier-c-bg">C</span><div><h2>有限元数据</h2><p>来源完整度 20–44；可能只有论文标题、作者或描述，仍需补充原始链接。</p></div></article>
+        <article class="method-block"><span class="tier-badge tier-d-bg">D</span><div><h2>待补直接来源</h2><p>来源完整度 0–19；当前材料不足以追溯评测方法或结果页面。</p></div></article>
+      </section>
+      <section class="method-detail">
+        <div><h2>计分字段</h2><dl><div><dt>直接结果页</dt><dd>+40</dd></div><div><dt>代码仓库</dt><dd>+25</dd></div><div><dt>论文元数据</dt><dd>+15</dd></div><div><dt>作者信息</dt><dd>+10</dd></div><div><dt>更新时间</dt><dd>+5</dd></div><div><dt>评测备注</dt><dd>+5</dd></div></dl></div>
+        <div><h2>结果验证字段</h2><p>模型结果表单独记录报告方关系：独立评测、benchmark 维护方、模型厂商或未知；验证状态区分一手已核验、已记录来源、厂商自报与未核验。</p><code>model_results.reporter_relationship<br>model_results.verification_status</code></div>
+        <div><h2>当前数据边界</h2><p>benchmark 目录与模型结果分开导入。模型结果来自官方 API、官网下载文件及留存快照，一级能力统一映射到六维体系；缺失能力、日期和无效区间不会通过推测补齐。</p><div class="boundary-stat"><strong id="result-record-count">0</strong><span>模型分数记录</span></div></div>
+      </section>
+      <section class="boundary-methodology">
+        <div><h2>能力边界值</h2><p>准确率与百分制成绩统一到 0–100；竞技场评级以 1000 为中点做 logistic 转换。同一子能力内按来源权重汇总，再对子能力等权，避免题目多的来源支配结果。</p></div>
+        <div><h2>覆盖度与可信度</h2><p>覆盖度衡量目标子能力中实际有结果的比例；可信度综合覆盖度、来源可追溯性与观测数量。缺失能力保持为空，不按 0 分处理。</p></div>
+        <div><h2>时间口径</h2><p>时间轴使用模型公开发布日期；榜单快照日期仅用于数据溯源。缺少可靠发布日期的模型保留在原始结果中，但不进入跨期趋势。</p></div>
+      </section>
+    </section>
+  </main>
+
+  <div class="compare-bar" id="compare-bar" hidden><div><strong id="compare-count">0</strong><span>条记录已选择</span></div><div><button class="button secondary inverted" id="clear-compare">清空</button><button class="button primary" id="open-compare">对比</button></div></div>
+
+  <div class="overlay" id="drawer-overlay" hidden></div>
+  <aside class="detail-drawer" id="detail-drawer" aria-labelledby="detail-title" aria-hidden="true">
+    <header><div><span class="drawer-kicker">BENCHMARK RECORD</span><h2 id="detail-title">详情</h2></div><button class="icon-button" id="close-drawer" aria-label="关闭详情">×</button></header>
+    <div class="drawer-content" id="drawer-content"></div>
+  </aside>
+
+  <dialog class="compare-dialog" id="compare-dialog">
+    <header><div><span class="drawer-kicker">SIDE-BY-SIDE</span><h2>基准对比</h2></div><button class="icon-button" id="close-compare" aria-label="关闭对比">×</button></header>
+    <div class="compare-content" id="compare-content"></div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+.git
+.agents
+.tmp
+__pycache__
+node_modules
+*.xlsx
+*.pyc
+
